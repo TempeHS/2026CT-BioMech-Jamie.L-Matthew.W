@@ -4,7 +4,7 @@ void setup(){
 }
 
 void loop(){
-  tof();
-  touch():
+  tof_loop();
+  touch_loop();
   delay(67);
 }
