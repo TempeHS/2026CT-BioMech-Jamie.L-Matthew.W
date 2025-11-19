@@ -1,55 +1,36 @@
 #include "Seeed_vl53l0x.h"
-Seeed_vl53l0x VL53L0X;
 
+VL53L0X sensor;
 
-#ifdef ARDUINO_SAMD_VARIANT_COMPLIANCE
-    #define SERIAL SerialUSB
-#else
-    #define SERIAL Serial
-#endif
+void tof_setup() {
+  Serial.begin(9600);
+  Wire.begin();
 
+  Serial.println("VL53L0X test start");
 
-
-void setup() {
-    VL53L0X_Error Status = VL53L0X_ERROR_NONE;
-    SERIAL.begin(115200);
-    Status = VL53L0X.VL53L0X_common_init();
-    if (VL53L0X_ERROR_NONE != Status) {
-        SERIAL.println("start vl53l0x mesurement failed!");
-        VL53L0X.print_pal_error(Status);
-        while (1);
-    }
-    VL53L0X.VL53L0X_single_ranging_init();
-    if (VL53L0X_ERROR_NONE != Status) {
-        SERIAL.println("start vl53l0x mesurement failed!");
-        VL53L0X.print_pal_error(Status);
-        while (1);
-    }
+  if (!sensor.init()) {
+    Serial.println("ERROR: VL53L0X not found. Check I2C connection!");
+    while (1);
+  }
+  sensor.setTimeout(500);
+  Serial.println("VL53L0X initialized");
 }
 
+void tof_loop() {
+  uint16_t distance = sensor.readRangeSingleMillimeters();
 
-void loop() {
-    VL53L0X_RangingMeasurementData_t RangingMeasurementData;
-    VL53L0X_Error Status = VL53L0X_ERROR_NONE;
-
-    memset(&RangingMeasurementData, 0, sizeof(VL53L0X_RangingMeasurementData_t));
-    Status = VL53L0X.PerformSingleRangingMeasurement(&RangingMeasurementData);
-    if (VL53L0X_ERROR_NONE == Status) {
-        if (RangingMeasurementData.RangeMilliMeter >= 2000) {
-            SERIAL.println("out of range!!");
-        } else {
-            SERIAL.print("Measured distance:");
-            SERIAL.print(RangingMeasurementData.RangeMilliMeter);
-            SERIAL.println(" mm");
-        }
-    } else {
-        SERIAL.print("mesurement failed !! Status code =");
-        SERIAL.println(Status);
-    }
-
-    delay(300);
+  if (sensor.timeoutOccurred()) {
+    Serial.println("Timeout!");
+  } else {
+    Serial.print("Distance: ");
+    Serial.print(distance);
+    Serial.println(" mm");
+  }
+  if (distance < 50) {
+  Serial.print("Object detected closer than 50mm! Distance: ");
+  Serial.print(distance);
+  Serial.println(" mm");
 }
-
-
-
+delay(300);
+}
 
