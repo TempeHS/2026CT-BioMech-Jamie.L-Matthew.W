@@ -1,30 +1,31 @@
-#include "Seeed_vl53l0x.h"
-Seeed_vl53l0x VL53L0X;
+#include <Adafruit_VL53L0X.h>
 
+Adafruit_VL53L0X lox = Adafruit_VL53L0X();
 
-#ifdef ARDUINO_SAMD_VARIANT_COMPLIANCE
-    #define SERIAL SerialUSB
-#else
-    #define SERIAL Serial
-#endif
+void setup() {
+  Serial.begin(9600);
+  Wire.begin(); // I2C
+  Serial.println("VL53L0X example");
 
+  if (!lox.begin()) {
+    Serial.println("ERROR: VL53L0X not found. Check I2C connection and address.");
+    while (1) delay(1000);
+  }
+  Serial.println("VL53L0X initialized");
+}
 
+void loop() {
+  VL53L0X_RangingMeasurementData_t measure;
+  lox.rangingTest(&measure, false); // blocking single-shot
 
-void tof_setup() {
-    VL53L0X_Error Status = VL53L0X_ERROR_NONE;
-    SERIAL.begin(9600);
-    Status = VL53L0X.VL53L0X_common_init();
-    if (VL53L0X_ERROR_NONE != Status) {
-        SERIAL.println("start vl53l0x mesurement failed!");
-        VL53L0X.print_pal_error(Status);
-        while (1);
-    }
-    VL53L0X.VL53L0X_single_ranging_init();
-    if (VL53L0X_ERROR_NONE != Status) {
-        SERIAL.println("start vl53l0x mesurement failed!");
-        VL53L0X.print_pal_error(Status);
-        while (1);
-    }
+  if (measure.RangeStatus != 4) { // 4 = out of range
+    Serial.print("Distance (mm): ");
+    Serial.println(measure.RangeMilliMeter);
+  } else {
+    Serial.println("Out of range");
+  }
+
+  delay(200); // adjust sample rate as needed
 }
 
 
