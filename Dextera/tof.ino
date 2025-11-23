@@ -21,16 +21,14 @@ void tof_loop() {
 
   if (sensor.timeoutOccurred()) {
     Serial.println("Timeout!");
-  } else {
+    Serial.println("Check connection!!!")
+  } else if (distance >= 1) {
     Serial.print("Distance: ");
     Serial.print(distance);
     Serial.println(" mm");
-  }
-  if (distance < 50) {
-  Serial.print("Object detected closer than 50mm! Distance: ");
-  Serial.print(distance);
-  Serial.println(" mm");
 }
-delay(300);
+
+  delay(300);
 }
+
 
