@@ -24,7 +24,7 @@ void touch_loop() {
   uint16_t touched = cap.touched();
 
   if (touched != lastTouched) {
-    Serial.print("Touched: ");
+    Serial.print("Touched pads: ");
     bool any = false;
     for (uint8_t i = 0; i < 12; i++) {
       if (touched & (1 << i)) {
