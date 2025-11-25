@@ -11,11 +11,11 @@ void touch_setup() {
   Wire.begin();
 
   if (!cap.begin(0x5A)) {
-    Serial.println("ERROR: MPR121 not found at 0x5A. Check wiring.");
+    Serial.println("Yo shi ain't working");
     Serial.println("Run I2C scanner if needed.");
     while (true) delay(1000);
   }
-  Serial.println("MPR121 initialized");
+  Serial.println("Yo shi is now working");
 }
 
 uint16_t lastTouched = 0;
