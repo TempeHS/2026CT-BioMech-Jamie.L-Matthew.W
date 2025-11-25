@@ -5,4 +5,4 @@ The baud rate must be changed as the code provided to me did not work with a 960
 
 I used the seeed example code from copilot. I have not ttested it yet as i will not commit and push mid lesson.
 
-I keep getting the same error saying that the startup measurement failed and 
+I keep getting the same error saying that the startup measurement failed and i dont know how to fix it. I dont think its a hardware issue as ive tried switching multiple things around.
