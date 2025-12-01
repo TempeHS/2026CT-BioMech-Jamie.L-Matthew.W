@@ -40,3 +40,12 @@ void touch_loop() {
 
   delay(100);
 }
+
+// Arduino entry points
+void setup() {
+  touch_setup();
+}
+
+void loop() {
+  touch_loop();
+}
