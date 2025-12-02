@@ -8,3 +8,5 @@ I used the seeed example code from copilot. I have not ttested it yet as i will 
 I keep getting the same error saying that the startup measurement failed and i dont know how to fix it. I dont think its a hardware issue as ive tried switching multiple things around.
 
 Still errors. Maybe its a hardware issue as my code works fine and im not getting any red errors.
+
+I fixed the errors. I changed the buad rate from 9600 to 115200 and that solved the problem.

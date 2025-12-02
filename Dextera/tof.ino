@@ -1,4 +1,4 @@
-#include "Seeed_vl53l0x.h"
+#include ".h"
 Seeed_vl53l0x VL53L0X;
 
 
@@ -12,7 +12,7 @@ Seeed_vl53l0x VL53L0X;
 
 void tof_setup() {
     VL53L0X_Error Status = VL53L0X_ERROR_NONE;
-    SERIAL.begin(9600);
+    SERIAL.begin(115200);
     Status = VL53L0X.VL53L0X_common_init();
     if (VL53L0X_ERROR_NONE != Status) {
         SERIAL.println("start vl53l0x mesurement failed!");
@@ -40,7 +40,7 @@ void tof_loop() {
         } else {
             SERIAL.print("Measured distance:");
             SERIAL.print(RangingMeasurementData.RangeMilliMeter);
-            SERIAL.println(" mm");
+            SERIAL.println("mm");
         }
     } else {
         SERIAL.print("mesurement failed !! Status code =");
@@ -49,8 +49,6 @@ void tof_loop() {
 
     delay(300);
 }
-
-
 
 
 
