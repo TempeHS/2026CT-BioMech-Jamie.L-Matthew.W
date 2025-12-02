@@ -4,18 +4,11 @@
 Adafruit_MPR121 cap; // correct constructor
 
 void touch_setup() {
-  Serial.begin(9600);
-  while (!Serial) { delay(10); }
+  Serial.begin(115200);
+  delay (1000);
 
-  Serial.println("MPR121 touch sensor test");
-  Wire.begin();
-
-  if (!cap.begin(0x5A)) {
-    Serial.println("Yo shi ain't working");
-    Serial.println("Run I2C scanner if needed.");
-    while (true) delay(1000);
-  }
-  Serial.println("Yo shi is now working");
+  cap.begin();
+  Serial.println("stuff is initialized");
 }
 
 uint16_t lastTouched = 0;
@@ -28,15 +21,14 @@ void touch_loop() {
     bool any = false;
     for (uint8_t i = 0; i < 12; i++) {
       if (touched & (1 << i)) {
+        if (any) Serial.print(", ");
         Serial.print(i);
-        Serial.print(" ");
         any = true;
       }
     }
     if (!any) Serial.print("none");
-    Serial.println();
+    Serial.println("stop touching me");
     lastTouched = touched;
   }
-
-  delay(100);
 }
+
