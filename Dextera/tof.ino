@@ -1,4 +1,4 @@
-#include ".h"
+#include "Seeed_vl53l0x.h"
 Seeed_vl53l0x VL53L0X;
 
 
@@ -40,7 +40,7 @@ void tof_loop() {
         } else {
             SERIAL.print("Measured distance:");
             SERIAL.print(RangingMeasurementData.RangeMilliMeter);
-            SERIAL.println("mm");
+            SERIAL.println(" mm");
         }
     } else {
         SERIAL.print("mesurement failed !! Status code =");
