@@ -5,7 +5,7 @@ Adafruit_MPR121 cap; // correct constructor
 
 void touch_setup() {
   Serial.begin(115200);
-  delay (1000);
+  delay(1000);
 
   cap.begin();
   Serial.println("stuff is initialized");
@@ -26,10 +26,8 @@ void touch_loop() {
         any = true;
       }
     }
-    if (!any) Serial.print("none"); {
+    if (!any) Serial.print("none");
     Serial.println("stop touching me");
     lastTouched = touched;
-    }
   }
 }
-

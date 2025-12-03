@@ -29,3 +29,5 @@ void touch_setup() {
   cap.begin();
   Serial.println("stuff is initialized");
 }
+
+3. Code stopped working for some reason. Touch setup and touch loop were not declaired in this scope.
