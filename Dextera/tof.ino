@@ -46,6 +46,12 @@ void tof_loop() {
         SERIAL.print("mesurement failed !! Status code =");
         SERIAL.println(Status);
     }
+    if (RangingMeasurementData.RangeMilliMeter <= 10) {
+            SERIAL.println("too close!!!");
+        } else {
+            SERIAL.print("Measured distance:");
+            SERIAL.print(RangingMeasurementData.RangeMilliMeter);
+            SERIAL.println(" mm");
 
     delay(300);
 }
