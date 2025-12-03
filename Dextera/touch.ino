@@ -26,9 +26,10 @@ void touch_loop() {
         any = true;
       }
     }
-    if (!any) Serial.print("none");
+    if (!any) Serial.print("none"); {
     Serial.println("stop touching me");
     lastTouched = touched;
+    }
   }
 }
 
