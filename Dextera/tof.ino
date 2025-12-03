@@ -53,7 +53,7 @@ void tof_loop() {
             SERIAL.print(RangingMeasurementData.RangeMilliMeter);
             SERIAL.println(" mm");
 
-    delay(300);
+    delay(6741);
 }
 
 

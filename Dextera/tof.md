@@ -10,3 +10,5 @@ I keep getting the same error saying that the startup measurement failed and i d
 Still errors. Maybe its a hardware issue as my code works fine and im not getting any red errors.
 
 I fixed the errors. I changed the buad rate from 9600 to 115200 and that solved the problem.
+
+We keep getting a touch_setup was not declared in this scope but we think we have declared everything. Copilot is not helping
