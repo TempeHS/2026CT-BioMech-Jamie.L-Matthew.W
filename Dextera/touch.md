@@ -31,3 +31,5 @@ void touch_setup() {
 }
 
 3. Code stopped working for some reason. Touch setup and touch loop were not declaired in this scope.
+
+4. Still have not made any progress with the error. Still trying to find out what is wrong. Might have something to do with the dextera.ino
