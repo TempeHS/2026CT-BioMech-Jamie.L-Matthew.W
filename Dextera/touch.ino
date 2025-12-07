@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include <Adafruit_MPR121.h>
 
-Adafruit_MPR121 cap; // correct constructor
+Adafruit_MPR121 cap;
 
 void touch_setup() {
   Serial.begin(115200);
@@ -13,7 +13,7 @@ void touch_setup() {
 
 uint16_t lastTouched = 0;
 
-void touch_loop() {
+void touch_loop(); {
   uint16_t touched = cap.touched();
 
   if (touched != lastTouched) {
